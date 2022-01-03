@@ -2,6 +2,10 @@
 
 #include "ServiceCollection.hpp"
 
+class DependencyInjectionTestClass;
+class DependencyInjectionTestClassC;
+class DependencyInjectionTestClassB;
+
 class DependencyInjectionTestClass
 {
 private:
@@ -22,13 +26,19 @@ class DependencyInjectionTestClassB
 {
 private:
 public:
-	explicit DependencyInjectionTestClassB(int& ctorCallsCounter, int storedValue) : _value(storedValue)
+	explicit DependencyInjectionTestClassB(
+		AspCpp::Extensions::DependencyInjection::Dependency<DependencyInjectionTestClass> dependency,
+		AspCpp::Extensions::DependencyInjection::Dependency<DependencyInjectionTestClassC> dependencyC)
 	{
-		++ctorCallsCounter;
 	}
+};
 
-	int Value()
-	{ 
-		return _value;
+class DependencyInjectionTestClassC
+{
+private:
+public:
+	explicit DependencyInjectionTestClassC(
+		AspCpp::Extensions::DependencyInjection::Dependency<DependencyInjectionTestClass> dependency)
+	{
 	}
 };

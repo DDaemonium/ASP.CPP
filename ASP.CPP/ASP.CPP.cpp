@@ -22,9 +22,9 @@ public:
 
 class Bar {
 private:
-	Singleton<Foo> m_foo;
+	Dependency<Foo> m_foo;
 public:
-	Bar(Singleton<Foo> ptr): m_foo(ptr) {
+	Bar(Dependency<Foo> ptr): m_foo(ptr) {
 		cout << "\nBarCreated!\n";
 	}
 	void print() {
@@ -38,10 +38,10 @@ int main()
 {
 	ServiceCollection collection;
 	collection.AddSingleton<Foo>([](ServiceProvider& sp) { return new Foo(2); });
-	collection.AddTransient<Bar>([](ServiceProvider& sp) { return new Bar(sp.ResolveSingleton<Foo>()); });
+	collection.AddTransient<Bar>([](ServiceProvider& sp) { return new Bar(sp.Resolve<Foo>()); });
 
 	decltype(auto) serviceProvider = collection.BuildServiceProvider();
-	auto bar = serviceProvider->ResolveTransient<Bar>();
+	auto bar = serviceProvider->Resolve<Bar>();
 	bar->print();
 }
 
