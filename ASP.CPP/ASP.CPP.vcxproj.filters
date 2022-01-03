@@ -15,10 +15,19 @@
     <Filter Include="Core\Host">
       <UniqueIdentifier>{3537c9a9-1f2c-4414-bfeb-7c733a61dc58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Host\Source">
+      <UniqueIdentifier>{4a594c1d-d872-493f-8fbe-ce68dedd52f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DependencyInjection">
+      <UniqueIdentifier>{92d76f7d-f546-40dd-961b-d21e0f41fc18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASP.CPP.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Host\Source\Host.cpp">
+      <Filter>Core\Host\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -28,5 +37,17 @@
     <ClInclude Include="Core\Host\IHostBuilder.hpp">
       <Filter>Core\Host</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Host\IHost.hpp">
+      <Filter>Core\Host</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Host\IWebHostBuilder.hpp">
+      <Filter>Core\Host</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DependencyInjection\ServiceCollection.hpp">
+      <Filter>Core\DependencyInjection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

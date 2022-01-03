@@ -1,11 +1,48 @@
 // ASP.CPP.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#include "Core/DependencyInjection/ServiceCollection.hpp"
 #include <iostream>
+
+using namespace std;
+using namespace AspCpp::Extensions::DependencyInjection;
+
+class Foo {
+private:
+	int _v;
+public:
+	Foo(int v):_v(v) {
+		cout << "\nFooCreated!\n";
+	}
+
+	void print() {
+		cout << _v << "foo";
+	}
+};
+
+class Bar {
+private:
+	Singleton<Foo> m_foo;
+public:
+	Bar(Singleton<Foo> ptr): m_foo(ptr) {
+		cout << "\nBarCreated!\n";
+	}
+	void print() {
+		cout << '\n';
+		m_foo->print();
+		cout << "bar";
+	}
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	ServiceCollection collection;
+	collection.AddSingleton<Foo>([](ServiceProvider& sp) { return new Foo(2); });
+	collection.AddTransient<Bar>([](ServiceProvider& sp) { return new Bar(sp.ResolveSingleton<Foo>()); });
+
+	decltype(auto) serviceProvider = collection.BuildServiceProvider();
+	auto bar = serviceProvider->ResolveTransient<Bar>();
+	bar->print();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

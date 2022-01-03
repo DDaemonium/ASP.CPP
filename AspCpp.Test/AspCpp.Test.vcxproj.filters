@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DependencyInjectionTests\DependencyInjectionTests.cpp">
+      <Filter>DependencyInjection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DependencyInjectionTests\DependencyInjectionTestClasses.hpp">
+      <Filter>DependencyInjection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DependencyInjection">
+      <UniqueIdentifier>{459e1ede-2f4a-43b1-aa41-619e82b60517}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
